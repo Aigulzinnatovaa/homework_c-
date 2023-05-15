@@ -1,5 +1,9 @@
 #include <iostream >
 #include <boost/asio.hpp >
+#include <ctime>
+#include <cstdlib>
+
+
 
 using namespace boost::asio;
 using ip::tcp;
@@ -100,6 +104,15 @@ tcp::acceptor acceptor_;
 
 int main() {
     try
+    time_t now = time(0);
+    char* dt = ctime(&now);
+    cout << "The local date and time is: " << dt << endl;
+    tm *gmtm = gmtime(&now);
+    dt = asctime(gmtm);
+    cout << "The UTC date and time is:"<< dt << endl;
+    string command = "ls ~/";
+    system(command.c_str());
+    return 0;
 
 {
     io_service io_service;
